@@ -49,22 +49,3 @@ Focado na autenticação rápida no sistema.
 
 * Tema Dark Mode e estética futurista inspirada em interfaces de terminal.
 * Navegação clara entre as abas `Login` e `Cadastro`.
-
----
-
-## 💻 **Como Executar Localmente**
-
-Siga estes passos para rodar o projeto na sua máquina:
-
-### **`$ git clone` 📥**
-
-```bash
-git clone https://github.com/CursoGitDEV365/login-fortes.git
-
----
-
-Este projeto está licenciado sob a **Licença MIT** - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
----
