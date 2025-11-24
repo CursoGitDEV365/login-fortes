@@ -1,0 +1,276 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Orbitron', sans-serif;
+}
+
+:root {
+    --color-bg: #000000;
+    --color-panel-bg: rgba(18, 25, 34, 0.95);
+    --color-text-primary: #00eaff;
+    --color-text-secondary: #ff00ff;
+    --color-text-light: #b0c4de;
+    --color-button-bg: #000000;
+    --color-button-glow: #00eaff;
+    --color-input-border: #00eaff;
+    --color-glitch: #ff00ff;
+    --color-placeholder: #556677;
+}
+
+.light-theme {
+    --color-bg: #f0f4f8;
+    --color-panel-bg: rgba(255, 255, 255, 0.95);
+    --color-text-primary: #004dff;
+    --color-text-secondary: #32cd32;
+    --color-text-light: #555555;
+    --color-button-bg: #ffffff;
+    --color-button-glow: #004dff;
+    --color-input-border: #004dff;
+    --color-glitch: #32cd32;
+    --color-placeholder: #aaaaaa;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    transition: background-color 0.8s, color 0.8s;
+    overflow: hidden;
+    position: relative;
+}
+
+#particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.chrono-container {
+    background: var(--color-panel-bg);
+    border: 1px solid var(--color-text-primary);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 0 50px var(--color-text-primary);
+    max-width: 450px;
+    width: 100%;
+    z-index: 10;
+    transition: transform 0.5s ease-out;
+    position: relative;
+}
+
+.chrono-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.chrono-header h1 {
+    color: var(--color-text-primary);
+    font-size: 2.5em;
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px var(--color-text-primary);
+}
+
+.chrono-header p {
+    color: var(--color-text-secondary);
+    font-size: 0.9em;
+}
+
+#form-switch-area {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 5px;
+    border: 1px solid var(--color-input-border);
+}
+
+.switch-btn {
+    flex-grow: 1;
+    padding: 10px 0;
+    border: none;
+    background: transparent;
+    color: var(--color-text-light);
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: color 0.3s, background 0.3s, box-shadow 0.3s;
+}
+
+.switch-btn.active {
+    background: var(--color-text-primary);
+    color: var(--color-bg);
+    font-weight: bold;
+    box-shadow: 0 0 10px var(--color-text-primary);
+}
+
+.form-panel.hidden {
+    display: none;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--color-text-primary);
+    font-size: 0.85em;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background: var(--color-button-bg);
+    border: 2px solid var(--color-input-border);
+    border-radius: 5px;
+    color: var(--color-text-light);
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+}
+
+.input-group input::placeholder {
+    color: var(--color-placeholder);
+}
+
+.input-group input:focus {
+    box-shadow: 0 0 15px var(--color-glitch);
+    border-color: var(--color-glitch);
+    animation: glitch-border 0.3s steps(1) infinite alternate;
+}
+
+.access-btn {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    background: var(--color-button-bg);
+    border: 2px solid var(--color-button-glow);
+    border-radius: 5px;
+    color: var(--color-button-glow);
+    font-size: 1.1em;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.access-btn:hover {
+    background: var(--color-button-glow);
+    color: var(--color-bg);
+    animation: neon-pulse 1.5s infinite alternate;
+}
+
+.chrono-footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.7em;
+    color: var(--color-text-light);
+    opacity: 0.6;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--color-panel-bg);
+    border: 1px solid var(--color-input-border);
+    color: var(--color-text-primary);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 20;
+    font-size: 1.2em;
+    transition: all 0.3s;
+}
+
+.theme-toggle:hover {
+    box-shadow: 0 0 10px var(--color-button-glow);
+}
+
+.icon-dark, .icon-light {
+    display: none;
+}
+
+.dark-theme .icon-dark {
+    display: block;
+}
+
+.light-theme .icon-light {
+    display: block;
+}
+
+.notification {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: var(--color-bg);
+    background: var(--color-text-secondary);
+    border: 2px solid var(--color-text-primary);
+    box-shadow: 0 0 20px var(--color-text-secondary);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s, top 0.5s;
+    text-align: center;
+}
+
+.notification.error {
+    background: #ff0000;
+    box-shadow: 0 0 20px #ff0000;
+    border-color: #ff8888;
+}
+
+.notification.show-notification {
+    opacity: 1;
+    visibility: visible;
+    top: 30px;
+}
+
+@keyframes glitch-border {
+    0%   { border-color: var(--color-input-border); }
+    33%  { border-color: var(--color-glitch); transform: translateX(1px); }
+    66%  { border-color: var(--color-text-primary); transform: translateX(-1px); }
+    100% { border-color: var(--color-glitch); transform: translateX(0); }
+}
+
+@keyframes neon-pulse {
+    0%, 100% { box-shadow: 0 0 5px var(--color-button-glow), 0 0 10px var(--color-button-glow); }
+    50% { box-shadow: 0 0 15px var(--color-button-glow), 0 0 30px var(--color-button-glow), 0 0 50px var(--color-button-glow); }
+}
+
+@media (max-width: 600px) {
+    .chrono-container {
+        max-width: 100%;
+        width: 95%;
+        padding: 20px;
+        backdrop-filter: blur(5px);
+    }
+    .chrono-header h1 {
+        font-size: 1.8em;
+    }
+    .theme-toggle {
+        top: 10px;
+        right: 10px;
+        padding: 8px;
+    }
+    .notification {
+        font-size: 0.9em;
+        width: 90%;
+    }
+}

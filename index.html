@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/styles/style.css">
+    <link rel="shortcut icon" href="src/img/favicon.ico" type="image/x-icon">
+    <title>Acesso Fortes</title>
+</head>
+<body class="dark-theme">
+    <canvas id="particle-canvas"></canvas>
+
+    <div id="success-notification" class="notification"></div>
+
+    <main class="chrono-container">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Alternar entre modo claro e escuro">
+            <span class="icon-dark">🌙</span>
+            <span class="icon-light">☀️</span>
+        </button>
+
+        <header class="chrono-header">
+            <h1>FORTES</h1>
+            <p>Portal de Acesso da área Fortes</p>
+        </header>
+
+        <div id="form-switch-area">
+            <button class="switch-btn active" onclick="showLogin()">Login</button>
+            <button class="switch-btn" onclick="showRegister()">Cadastro</button>
+        </div>
+
+        <section id="login-form" class="form-panel active">
+            <form id="login-form-id" action="/login" method="POST">
+                <div class="input-group">
+                    <label for="login-email">ID de Acesso (Email)</label>
+                    <input type="email" id="login-email" name="email" required placeholder="Digite seu email de acesso">
+                </div>
+                <div class="input-group">
+                    <label for="login-password">Chave Criptográfica (Senha)</label>
+                    <input type="password" id="login-password" name="password" required placeholder="********">
+                </div>
+                <button type="submit" class="access-btn">ACESSAR O SISTEMA</button>
+            </form>
+        </section>
+
+        <section id="register-form" class="form-panel hidden">
+            <form id="register-form-id" action="/register" method="POST">
+                <div class="input-group">
+                    <label for="reg-name">Nome de Usuário</label>
+                    <input type="text" id="reg-name" name="name" required placeholder="Ex: Agente 700">
+                </div>
+                <div class="input-group">
+                    <label for="reg-email">Novo ID de Acesso (Email)</label>
+                    <input type="email" id="reg-email" name="email" required placeholder="Seu email@chrono.net">
+                </div>
+                <div class="input-group">
+                    <label for="reg-password">Nova Chave Criptográfica</label>
+                    <input type="password" id="reg-password" name="password" required placeholder="Crie uma senha forte">
+                </div>
+                <div class="input-group">
+                    <label for="reg-confirm-password">Confirmar Chave</label>
+                    <input type="password" id="reg-confirm-password" name="confirm_password" required placeholder="Repita a senha">
+                </div>
+                <button type="submit" class="access-btn">CRIAR CHAVE DE ACESSO</button>
+            </form>
+        </section>
+        
+        <footer class="chrono-footer">
+            <p>&copy; 2025 - Daniel Fortes</p>
+        </footer>
+    </main>
+    
+    <script src="src/js/script.js"></script>
+</body>
+</html>
